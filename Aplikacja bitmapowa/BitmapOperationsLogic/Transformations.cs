@@ -1,58 +1,66 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 
 namespace BitmapEditor
 {
     public static class Transformations
     {
-        public static Color TransformHue(Color rgbColor, int strenght)
+        public static Func<Color, Color> TransformHue(int strenght)
         {
-            HsvColor hsvColor = HsvRgbColorConverter.ConvertRgbToHsv(rgbColor);
+            return (Color rgbColor) =>
+            {
+                HsvColor hsvColor = HsvRgbColorConverter.ConvertRgbToHsv(rgbColor);
 
-            hsvColor.H += strenght;
+                hsvColor.H += strenght;
 
-            return HsvRgbColorConverter.ConvertHsvToRgb(hsvColor);
+                return HsvRgbColorConverter.ConvertHsvToRgb(hsvColor);
+            };
         }
 
-        public static Color TransformSaturation(Color rgbColor, int strenght)
+        public static Func<Color, Color> TransformSaturation(int strenght)
         {
-            HsvColor hsvColor = HsvRgbColorConverter.ConvertRgbToHsv(rgbColor);
+            return (Color rgbColor) =>
+            {
+                HsvColor hsvColor = HsvRgbColorConverter.ConvertRgbToHsv(rgbColor);
 
-            double floatingPointStrenght = (double)strenght / 100;
+                double floatingPointStrenght = (double)strenght / 100;
 
-            hsvColor.S += floatingPointStrenght;
+                hsvColor.S += floatingPointStrenght;
 
-            return HsvRgbColorConverter.ConvertHsvToRgb(hsvColor);
+                return HsvRgbColorConverter.ConvertHsvToRgb(hsvColor);
+            };
         }
 
-        public static Color TransformValue(Color rgbColor, int strenght)
+        public static Func<Color, Color> TransformValue(int strenght)
         {
-            HsvColor hsvColor = HsvRgbColorConverter.ConvertRgbToHsv(rgbColor);
+            return (Color rgbColor) =>
+            {
+                HsvColor hsvColor = HsvRgbColorConverter.ConvertRgbToHsv(rgbColor);
 
-            hsvColor.V += strenght;
+                hsvColor.V += strenght;
 
-            return HsvRgbColorConverter.ConvertHsvToRgb(hsvColor);
+                return HsvRgbColorConverter.ConvertHsvToRgb(hsvColor);
+            };
         }
 
-        public static Color TransformContrast(Color rgbColor, int strenght)
+        public static Func<Color, Color> TransformContrast(int strenght)
         {
-            double contrastLevel = Math.Pow((100.0 + strenght) / 100.0, 2);
+            return (Color rgbColor) =>
+            {
+                double contrastLevel = Math.Pow((100.0 + strenght) / 100.0, 2);
 
-            int r, g, b;
+                int r, g, b;
 
-            r = (int) (((((rgbColor.R / 255.0) - 0.5) * contrastLevel) + 0.5) * 255.0);
-            g = (int) (((((rgbColor.G / 255.0) - 0.5) * contrastLevel) + 0.5) * 255.0);
-            b = (int) (((((rgbColor.B / 255.0) - 0.5) * contrastLevel) + 0.5) * 255.0);
+                r = (int)(((((rgbColor.R / 255.0) - 0.5) * contrastLevel) + 0.5) * 255.0);
+                g = (int)(((((rgbColor.G / 255.0) - 0.5) * contrastLevel) + 0.5) * 255.0);
+                b = (int)(((((rgbColor.B / 255.0) - 0.5) * contrastLevel) + 0.5) * 255.0);
 
-            r = LimitToRange(r, 0, 255);
-            g = LimitToRange(g, 0, 255);
-            b = LimitToRange(b, 0, 255);
+                r = LimitToRange(r, 0, 255);
+                g = LimitToRange(g, 0, 255);
+                b = LimitToRange(b, 0, 255);
 
-            return Color.FromArgb(r, g, b);
+                return Color.FromArgb(r, g, b);
+            };
         }
 
         public static Color Invert(Color rgbColor)
@@ -75,7 +83,6 @@ namespace BitmapEditor
 
             return ApplyMatrix(neighborsMatrix, blurMatrix, (double)1/9);
         }
-
 
         public static Color Sharpen(Color[,] neighborsMatrix)
         {
@@ -101,18 +108,21 @@ namespace BitmapEditor
             return ApplyMatrix(neighborsMatrix, edgeDetectionMatrix, 1);
         }
 
-        public static Color Binarize(Color rgbColor , int threshold)
+        public static Func<Color, Color> Binarize(int threshold)
         {
-            double brightness = 0.299 * rgbColor.R + 0.587 * rgbColor.G + 0.114 * rgbColor.B;
+            return (Color rgbColor) =>
+            {
+                double brightness = (0.299 * rgbColor.R) + (0.587 * rgbColor.G) + (0.114 * rgbColor.B);
 
-            if (brightness > threshold)
-            {
-                return Color.White;
-            }
-            else
-            {
-                return Color.Black;
-            }
+                if (brightness > threshold)
+                {
+                    return Color.White;
+                }
+                else
+                {
+                    return Color.Black;
+                }
+            };
         }
 
         private static Color ApplyMatrix(Color[,] neighborsMatrix, int[,] transformationMatrix, double normalizationRate)
@@ -146,11 +156,11 @@ namespace BitmapEditor
         {
             if (value > max)
             {
-                value = max;
+                return max;
             }
             else if (value < min)
             {
-                value = min;
+                return min;
             }
 
             return value;

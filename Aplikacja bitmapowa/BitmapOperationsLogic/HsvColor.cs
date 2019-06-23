@@ -79,6 +79,6 @@ namespace BitmapEditor
                     _v = value;
                 }
             }
-        }      
+        }  
     }
 }

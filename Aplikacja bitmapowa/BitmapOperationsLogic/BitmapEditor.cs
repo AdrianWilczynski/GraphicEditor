@@ -31,23 +31,7 @@ namespace BitmapEditor
             previousVersionsOfBitmap.Push((Bitmap) CurrentlyEditedBitmap.Clone());
         }
 
-        public void TransformAllPixels(Func<Color, int, Color> transformation, int strenght)
-        {
-            saveCurrentVersionOfBitmap();
-
-            Color color;
-            for (int i = 0; i < CurrentlyEditedBitmap.Height; i++)
-                for (int j = 0; j < CurrentlyEditedBitmap.Width; j++)
-                {
-                    color = CurrentlyEditedBitmap.GetPixel(j, i);
-
-                    color = transformation(color, strenght);
-
-                    CurrentlyEditedBitmap.SetPixel(j, i, color);
-                }
-        }
-
-        public void TransformAllPixelsWithoutStrenght(Func<Color, Color> transformation)
+        public void TransformAllPixels(Func<Color, Color> transformation)
         {
             saveCurrentVersionOfBitmap();
 
