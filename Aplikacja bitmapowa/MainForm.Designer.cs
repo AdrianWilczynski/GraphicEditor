@@ -32,6 +32,7 @@
             this.panel = new System.Windows.Forms.Panel();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.groupBox = new System.Windows.Forms.GroupBox();
+            this.undoButton = new System.Windows.Forms.Button();
             this.histogramButton = new System.Windows.Forms.Button();
             this.binarizationLabel = new System.Windows.Forms.Label();
             this.binarizationTrackBar = new System.Windows.Forms.TrackBar();
@@ -56,7 +57,6 @@
             this.valueTimer = new System.Windows.Forms.Timer(this.components);
             this.contrastTimer = new System.Windows.Forms.Timer(this.components);
             this.binarizationTimer = new System.Windows.Forms.Timer(this.components);
-            this.undoButton = new System.Windows.Forms.Button();
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.groupBox.SuspendLayout();
@@ -75,13 +75,15 @@
             this.panel.AutoScroll = true;
             this.panel.Controls.Add(this.pictureBox);
             this.panel.Location = new System.Drawing.Point(0, 0);
+            this.panel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(784, 443);
+            this.panel.Size = new System.Drawing.Size(1176, 682);
             this.panel.TabIndex = 0;
             // 
             // pictureBox
             // 
-            this.pictureBox.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox.Location = new System.Drawing.Point(4, 5);
+            this.pictureBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(601, 260);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -109,20 +111,35 @@
             this.groupBox.Controls.Add(this.hueTrackBar);
             this.groupBox.Controls.Add(this.openFileButton);
             this.groupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox.Location = new System.Drawing.Point(0, 449);
+            this.groupBox.Location = new System.Drawing.Point(0, 691);
+            this.groupBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox.Name = "groupBox";
-            this.groupBox.Size = new System.Drawing.Size(784, 112);
+            this.groupBox.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox.Size = new System.Drawing.Size(1176, 172);
             this.groupBox.TabIndex = 1;
             this.groupBox.TabStop = false;
             this.groupBox.Text = "Narzędzia";
+            // 
+            // undoButton
+            // 
+            this.undoButton.Enabled = false;
+            this.undoButton.Location = new System.Drawing.Point(190, 117);
+            this.undoButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.undoButton.Name = "undoButton";
+            this.undoButton.Size = new System.Drawing.Size(142, 35);
+            this.undoButton.TabIndex = 17;
+            this.undoButton.Text = "Cofnij";
+            this.undoButton.UseVisualStyleBackColor = true;
+            this.undoButton.Click += new System.EventHandler(this.undoButton_Click);
             // 
             // histogramButton
             // 
             this.histogramButton.Enabled = false;
             this.histogramButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.histogramButton.Location = new System.Drawing.Point(127, 48);
+            this.histogramButton.Location = new System.Drawing.Point(190, 74);
+            this.histogramButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.histogramButton.Name = "histogramButton";
-            this.histogramButton.Size = new System.Drawing.Size(95, 23);
+            this.histogramButton.Size = new System.Drawing.Size(142, 35);
             this.histogramButton.TabIndex = 16;
             this.histogramButton.Text = "Histogram";
             this.histogramButton.UseVisualStyleBackColor = true;
@@ -131,19 +148,21 @@
             // binarizationLabel
             // 
             this.binarizationLabel.AutoSize = true;
-            this.binarizationLabel.Location = new System.Drawing.Point(690, 48);
+            this.binarizationLabel.Location = new System.Drawing.Point(1035, 74);
+            this.binarizationLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.binarizationLabel.Name = "binarizationLabel";
-            this.binarizationLabel.Size = new System.Drawing.Size(61, 13);
+            this.binarizationLabel.Size = new System.Drawing.Size(90, 20);
             this.binarizationLabel.TabIndex = 15;
             this.binarizationLabel.Text = "Binaryzacja";
             // 
             // binarizationTrackBar
             // 
             this.binarizationTrackBar.Enabled = false;
-            this.binarizationTrackBar.Location = new System.Drawing.Point(668, 16);
+            this.binarizationTrackBar.Location = new System.Drawing.Point(1002, 25);
+            this.binarizationTrackBar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.binarizationTrackBar.Maximum = 255;
             this.binarizationTrackBar.Name = "binarizationTrackBar";
-            this.binarizationTrackBar.Size = new System.Drawing.Size(104, 45);
+            this.binarizationTrackBar.Size = new System.Drawing.Size(156, 69);
             this.binarizationTrackBar.TabIndex = 14;
             this.binarizationTrackBar.TickFrequency = 26;
             this.binarizationTrackBar.Scroll += new System.EventHandler(this.binarizationTrackBar_Scroll);
@@ -152,9 +171,10 @@
             // 
             this.edgeDetectionButton.Enabled = false;
             this.edgeDetectionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.edgeDetectionButton.Location = new System.Drawing.Point(631, 69);
+            this.edgeDetectionButton.Location = new System.Drawing.Point(946, 106);
+            this.edgeDetectionButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.edgeDetectionButton.Name = "edgeDetectionButton";
-            this.edgeDetectionButton.Size = new System.Drawing.Size(120, 31);
+            this.edgeDetectionButton.Size = new System.Drawing.Size(180, 48);
             this.edgeDetectionButton.TabIndex = 13;
             this.edgeDetectionButton.Text = "Wykrywanie krawędzi";
             this.edgeDetectionButton.UseVisualStyleBackColor = true;
@@ -163,9 +183,10 @@
             // shaprenButton
             // 
             this.shaprenButton.Enabled = false;
-            this.shaprenButton.Location = new System.Drawing.Point(505, 69);
+            this.shaprenButton.Location = new System.Drawing.Point(758, 106);
+            this.shaprenButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.shaprenButton.Name = "shaprenButton";
-            this.shaprenButton.Size = new System.Drawing.Size(120, 31);
+            this.shaprenButton.Size = new System.Drawing.Size(180, 48);
             this.shaprenButton.TabIndex = 12;
             this.shaprenButton.Text = "Wyostrzenie";
             this.shaprenButton.UseVisualStyleBackColor = true;
@@ -174,9 +195,10 @@
             // blurButton
             // 
             this.blurButton.Enabled = false;
-            this.blurButton.Location = new System.Drawing.Point(379, 69);
+            this.blurButton.Location = new System.Drawing.Point(568, 106);
+            this.blurButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.blurButton.Name = "blurButton";
-            this.blurButton.Size = new System.Drawing.Size(120, 30);
+            this.blurButton.Size = new System.Drawing.Size(180, 46);
             this.blurButton.TabIndex = 11;
             this.blurButton.Text = "Rozmycie";
             this.blurButton.UseVisualStyleBackColor = true;
@@ -185,9 +207,10 @@
             // invertButton
             // 
             this.invertButton.Enabled = false;
-            this.invertButton.Location = new System.Drawing.Point(253, 69);
+            this.invertButton.Location = new System.Drawing.Point(380, 106);
+            this.invertButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.invertButton.Name = "invertButton";
-            this.invertButton.Size = new System.Drawing.Size(120, 30);
+            this.invertButton.Size = new System.Drawing.Size(180, 46);
             this.invertButton.TabIndex = 10;
             this.invertButton.Text = "Inwersja";
             this.invertButton.UseVisualStyleBackColor = true;
@@ -196,20 +219,22 @@
             // contrastLabel
             // 
             this.contrastLabel.AutoSize = true;
-            this.contrastLabel.Location = new System.Drawing.Point(588, 48);
+            this.contrastLabel.Location = new System.Drawing.Point(882, 74);
+            this.contrastLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.contrastLabel.Name = "contrastLabel";
-            this.contrastLabel.Size = new System.Drawing.Size(46, 13);
+            this.contrastLabel.Size = new System.Drawing.Size(69, 20);
             this.contrastLabel.TabIndex = 9;
             this.contrastLabel.Text = "Kontrast";
             // 
             // contrastTrackBar
             // 
             this.contrastTrackBar.Enabled = false;
-            this.contrastTrackBar.Location = new System.Drawing.Point(558, 16);
+            this.contrastTrackBar.Location = new System.Drawing.Point(837, 25);
+            this.contrastTrackBar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.contrastTrackBar.Maximum = 100;
             this.contrastTrackBar.Minimum = -100;
             this.contrastTrackBar.Name = "contrastTrackBar";
-            this.contrastTrackBar.Size = new System.Drawing.Size(104, 45);
+            this.contrastTrackBar.Size = new System.Drawing.Size(156, 69);
             this.contrastTrackBar.TabIndex = 8;
             this.contrastTrackBar.TickFrequency = 20;
             this.contrastTrackBar.Scroll += new System.EventHandler(this.contrastTrackBar_Scroll);
@@ -219,9 +244,10 @@
             this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.saveButton.Enabled = false;
-            this.saveButton.Location = new System.Drawing.Point(127, 21);
+            this.saveButton.Location = new System.Drawing.Point(190, 32);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(95, 24);
+            this.saveButton.Size = new System.Drawing.Size(142, 37);
             this.saveButton.TabIndex = 7;
             this.saveButton.Text = "Zapisz";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -230,38 +256,42 @@
             // valueLabel
             // 
             this.valueLabel.AutoSize = true;
-            this.valueLabel.Location = new System.Drawing.Point(483, 48);
+            this.valueLabel.Location = new System.Drawing.Point(724, 74);
+            this.valueLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.valueLabel.Name = "valueLabel";
-            this.valueLabel.Size = new System.Drawing.Size(46, 13);
+            this.valueLabel.Size = new System.Drawing.Size(68, 20);
             this.valueLabel.TabIndex = 6;
             this.valueLabel.Text = "Jasność";
             // 
             // saturationLabel
             // 
             this.saturationLabel.AutoSize = true;
-            this.saturationLabel.Location = new System.Drawing.Point(366, 48);
+            this.saturationLabel.Location = new System.Drawing.Point(549, 74);
+            this.saturationLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.saturationLabel.Name = "saturationLabel";
-            this.saturationLabel.Size = new System.Drawing.Size(57, 13);
+            this.saturationLabel.Size = new System.Drawing.Size(82, 20);
             this.saturationLabel.TabIndex = 5;
             this.saturationLabel.Text = "Nasycenie";
             // 
             // hueLabel
             // 
             this.hueLabel.AutoSize = true;
-            this.hueLabel.Location = new System.Drawing.Point(259, 48);
+            this.hueLabel.Location = new System.Drawing.Point(388, 74);
+            this.hueLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.hueLabel.Name = "hueLabel";
-            this.hueLabel.Size = new System.Drawing.Size(41, 13);
+            this.hueLabel.Size = new System.Drawing.Size(59, 20);
             this.hueLabel.TabIndex = 0;
             this.hueLabel.Text = "Odcień";
             // 
             // valueTrackBar
             // 
             this.valueTrackBar.Enabled = false;
-            this.valueTrackBar.Location = new System.Drawing.Point(448, 16);
+            this.valueTrackBar.Location = new System.Drawing.Point(672, 25);
+            this.valueTrackBar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.valueTrackBar.Maximum = 255;
             this.valueTrackBar.Minimum = -255;
             this.valueTrackBar.Name = "valueTrackBar";
-            this.valueTrackBar.Size = new System.Drawing.Size(104, 45);
+            this.valueTrackBar.Size = new System.Drawing.Size(156, 69);
             this.valueTrackBar.TabIndex = 4;
             this.valueTrackBar.TickFrequency = 50;
             this.valueTrackBar.Scroll += new System.EventHandler(this.valueTrackBar_Scroll);
@@ -269,11 +299,12 @@
             // saturationTrackBar
             // 
             this.saturationTrackBar.Enabled = false;
-            this.saturationTrackBar.Location = new System.Drawing.Point(338, 16);
+            this.saturationTrackBar.Location = new System.Drawing.Point(507, 25);
+            this.saturationTrackBar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.saturationTrackBar.Maximum = 100;
             this.saturationTrackBar.Minimum = -100;
             this.saturationTrackBar.Name = "saturationTrackBar";
-            this.saturationTrackBar.Size = new System.Drawing.Size(104, 45);
+            this.saturationTrackBar.Size = new System.Drawing.Size(156, 69);
             this.saturationTrackBar.TabIndex = 3;
             this.saturationTrackBar.TickFrequency = 20;
             this.saturationTrackBar.Scroll += new System.EventHandler(this.saturationTrackBar_Scroll);
@@ -281,11 +312,12 @@
             // hueTrackBar
             // 
             this.hueTrackBar.Enabled = false;
-            this.hueTrackBar.Location = new System.Drawing.Point(228, 16);
+            this.hueTrackBar.Location = new System.Drawing.Point(342, 25);
+            this.hueTrackBar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.hueTrackBar.Maximum = 180;
             this.hueTrackBar.Minimum = -180;
             this.hueTrackBar.Name = "hueTrackBar";
-            this.hueTrackBar.Size = new System.Drawing.Size(104, 45);
+            this.hueTrackBar.Size = new System.Drawing.Size(156, 69);
             this.hueTrackBar.TabIndex = 2;
             this.hueTrackBar.TickFrequency = 36;
             this.hueTrackBar.Scroll += new System.EventHandler(this.hueTrackBar_Scroll);
@@ -294,9 +326,10 @@
             // 
             this.openFileButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.openFileButton.Location = new System.Drawing.Point(12, 21);
+            this.openFileButton.Location = new System.Drawing.Point(18, 32);
+            this.openFileButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.openFileButton.Name = "openFileButton";
-            this.openFileButton.Size = new System.Drawing.Size(109, 79);
+            this.openFileButton.Size = new System.Drawing.Size(164, 122);
             this.openFileButton.TabIndex = 1;
             this.openFileButton.Text = "Otwórz";
             this.openFileButton.UseVisualStyleBackColor = true;
@@ -304,7 +337,6 @@
             // 
             // openFileDialog
             // 
-            this.openFileDialog.FileName = "openFileDialog";
             this.openFileDialog.Filter = "JPEG File|*.jpg|GIF File|*.gif|PNG File|*.png|BMP File|*.bmp";
             // 
             // saveFileDialog
@@ -336,26 +368,16 @@
             this.binarizationTimer.Interval = 500;
             this.binarizationTimer.Tick += new System.EventHandler(this.binarizationTimer_Tick);
             // 
-            // undoButton
+            // MainForm
             // 
-            this.undoButton.Enabled = false;
-            this.undoButton.Location = new System.Drawing.Point(127, 76);
-            this.undoButton.Name = "undoButton";
-            this.undoButton.Size = new System.Drawing.Size(95, 23);
-            this.undoButton.TabIndex = 17;
-            this.undoButton.Text = "Cofnij";
-            this.undoButton.UseVisualStyleBackColor = true;
-            this.undoButton.Click += new System.EventHandler(this.undoButton_Click);
-            // 
-            // Form1
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(1176, 863);
             this.Controls.Add(this.groupBox);
             this.Controls.Add(this.panel);
-            this.MinimumSize = new System.Drawing.Size(800, 600);
-            this.Name = "Form1";
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MinimumSize = new System.Drawing.Size(1189, 893);
+            this.Name = "MainForm";
             this.Text = "Aplikacja bitmapowa";
             this.panel.ResumeLayout(false);
             this.panel.PerformLayout();
